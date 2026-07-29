@@ -1,0 +1,97 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const sections = [
+  { name: 'Blog', path: '/blog', description: 'Read my latest articles and thoughts' },
+  { name: 'Projects', path: '/projects', description: 'Explore my portfolio of projects' },
+  { name: 'Publications', path: '/publications', description: 'Academic papers and published work' },
+  { name: 'Talks', path: '/talks', description: 'Conference talks and presentations' },
+  { name: 'CV', path: '/cv', description: 'My professional background' },
+  { name: 'Leadership', path: '/leadership', description: 'Leadership experience and philosophy' },
+  { name: 'Travel', path: '/travel', description: 'Travel stories and adventures' },
+  { name: 'Experiments', path: '/experiments', description: 'Experimental projects and ideas' },
+];
+---
+
+<BaseLayout title="Content" description="Explore all content sections">
+  <div class="content-sections">
+    <h1>All Sections</h1>
+    <div class="sections-list">
+      {sections.map((section) => (
+        <a href={section.path} class="section-link">
+          <div class="section-item">
+            <h2>{section.name}</h2>
+            <p>{section.description}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .content-sections {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+  }
+
+  .content-sections h1 {
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+  }
+
+  .sections-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .section-link {
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s;
+  }
+
+  .section-link:hover {
+    transform: translateY(-4px);
+  }
+
+  .section-item {
+    padding: 2rem;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    border: 2px solid var(--border);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .section-link:hover .section-item {
+    border-color: var(--accent);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  .section-item h2 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    color: var(--accent);
+  }
+
+  .section-item p {
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .content-sections {
+      padding: 2rem 1rem;
+    }
+
+    .content-sections h1 {
+      font-size: 1.75rem;
+    }
+
+    .sections-list {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

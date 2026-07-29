@@ -1,0 +1,205 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Home" description="Welcome to my portfolio">
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Welcome</h1>
+      <p>This is your personal portfolio website built with Astro and Markdown.</p>
+      <div class="cta-buttons">
+        <a href="/blog" class="btn btn-primary">Read Blog</a>
+        <a href="/projects" class="btn btn-secondary">View Projects</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="featured">
+    <div class="featured-container">
+      <h2>Featured Sections</h2>
+      <div class="section-grid">
+        <div class="section-card">
+          <h3>Blog</h3>
+          <p>Articles, thoughts, and insights on various topics.</p>
+          <a href="/blog">Explore →</a>
+        </div>
+        <div class="section-card">
+          <h3>Projects</h3>
+          <p>Showcase of my work and side projects.</p>
+          <a href="/projects">View →</a>
+        </div>
+        <div class="section-card">
+          <h3>Publications</h3>
+          <p>Academic papers and published articles.</p>
+          <a href="/publications">Discover →</a>
+        </div>
+        <div class="section-card">
+          <h3>Talks</h3>
+          <p>Presentations and conference talks.</p>
+          <a href="/talks">Watch →</a>
+        </div>
+        <div class="section-card">
+          <h3>CV</h3>
+          <p>My background and professional experience.</p>
+          <a href="/cv">Learn →</a>
+        </div>
+        <div class="section-card">
+          <h3>Leadership</h3>
+          <p>Leadership philosophy and initiatives.</p>
+          <a href="/leadership">Read →</a>
+        </div>
+        <div class="section-card">
+          <h3>Travel</h3>
+          <p>Travel stories and adventures.</p>
+          <a href="/travel">Explore →</a>
+        </div>
+        <div class="section-card">
+          <h3>Experiments</h3>
+          <p>Experimental projects and ideas.</p>
+          <a href="/experiments">Discover →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+    color: white;
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+
+  .hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero-content p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: inline-block;
+  }
+
+  .btn-primary {
+    background: white;
+    color: var(--accent);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .featured {
+    padding: 4rem 2rem;
+  }
+
+  .featured-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .featured h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2rem;
+  }
+
+  .section-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .section-card {
+    padding: 2rem;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .section-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  .section-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+  }
+
+  .section-card p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+  }
+
+  .section-card a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+
+  .section-card a:hover {
+    color: var(--accent-hover);
+  }
+
+  @media (max-width: 768px) {
+    .hero-content h1 {
+      font-size: 2rem;
+    }
+
+    .hero-content p {
+      font-size: 1.1rem;
+    }
+
+    .hero {
+      padding: 2rem 1rem;
+    }
+
+    .featured {
+      padding: 2rem 1rem;
+    }
+
+    .featured h2 {
+      font-size: 1.5rem;
+    }
+
+    .section-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

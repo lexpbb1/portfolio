@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const blogPosts = [
+  {
+    title: 'Getting Started with Astro',
+    slug: 'getting-started-astro',
+    description: 'Learn how to build fast websites with Astro and Markdown',
+    date: '2026-07-28',
+    url: '/blog/getting-started-astro/',
+  },
+];
+---
+
+<BaseLayout title="Blog" description="Articles and thoughts">
+  <div class="blog-page">
+    <h1>Blog</h1>
+    <p class="intro">Welcome to my blog. Here I share articles, thoughts, and insights on various topics.</p>
+
+    {blogPosts.length > 0 ? (
+      <div class="blog-list">
+        {blogPosts.map((post) => (
+          <article class="blog-item">
+            <h2>
+              <a href={post.url}>{post.title}</a>
+            </h2>
+            <p class="blog-date">{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+            <p class="blog-excerpt">{post.description}</p>
+            <a href={post.url} class="read-more">Read more →</a>
+          </article>
+        ))}
+      </div>
+    ) : (
+      <p class="no-content">No blog posts yet. Check back soon!</p>
+    )}
+  </div>
+</BaseLayout>
+
+<style>
+  .blog-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+  }
+
+  .blog-page h1 {
+    margin-bottom: 0.5rem;
+    font-size: 2.5rem;
+  }
+
+  .intro {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+
+  .blog-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .blog-item {
+    padding: 2rem;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+
+  .blog-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  .blog-item h2 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .blog-item h2 a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s;
+  }
+
+  .blog-item h2 a:hover {
+    color: var(--accent);
+  }
+
+  .blog-date {
+    color: var(--text-tertiary);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .blog-excerpt {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+  }
+
+  .read-more {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+
+  .read-more:hover {
+    color: var(--accent-hover);
+  }
+
+  .no-content {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .blog-page {
+      padding: 2rem 1rem;
+    }
+
+    .blog-page h1 {
+      font-size: 1.75rem;
+    }
+
+    .intro {
+      font-size: 1rem;
+    }
+
+    .blog-item {
+      padding: 1.5rem;
+    }
+  }
+</style>

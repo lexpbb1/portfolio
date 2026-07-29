@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Experiments" description="Experimental projects and ideas">
+  <div class="section-page">
+    <h1>Experiments</h1>
+    <p class="intro">Experimental projects and ideas. Add your experiments to the `content/experiments/` directory.</p>
+    <p class="no-content">Experiments coming soon. Add markdown files to the `content/experiments/` directory.</p>
+  </div>
+</BaseLayout>
+
+<style>
+  .section-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+  }
+
+  .section-page h1 {
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+  }
+
+  .intro {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .no-content {
+    text-align: center;
+    color: var(--text-tertiary);
+    padding: 3rem 2rem;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    border: 1px dashed var(--border);
+  }
+
+  @media (max-width: 768px) {
+    .section-page {
+      padding: 2rem 1rem;
+    }
+
+    .section-page h1 {
+      font-size: 1.75rem;
+    }
+  }
+</style>

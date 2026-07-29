@@ -1,0 +1,72 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description || ''} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/styles/global.css" />
+    <link rel="stylesheet" href="/styles/theme.css" />
+    <script is:inline>
+      const theme = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', theme);
+    </script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="/" class="logo">Home</a>
+        <ul class="nav-links">
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/projects">Projects</a></li>
+          <li><a href="/publications">Publications</a></li>
+          <li><a href="/talks">Talks</a></li>
+          <li><a href="/cv">CV</a></li>
+          <li><a href="/leadership">Leadership</a></li>
+          <li><a href="/travel">Travel</a></li>
+          <li><a href="/experiments">Experiments</a></li>
+          <li>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+              🌙
+            </button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <p>&copy; 2026. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      const themeToggle = document.getElementById('theme-toggle');
+      const html = document.documentElement;
+
+      if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+          const currentTheme = html.getAttribute('data-theme');
+          const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+          html.setAttribute('data-theme', newTheme);
+          localStorage.setItem('theme', newTheme);
+          themeToggle.textContent = newTheme === 'light' ? '🌙' : '☀️';
+        });
+      }
+    </script>
+  </body>
+</html>
