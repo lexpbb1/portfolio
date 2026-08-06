@@ -150,28 +150,14 @@ Edit the navigation links in `src/layouts/BaseLayout.astro`:
 
 ### GitHub Pages
 
-1. Set the repository to public
-2. Go to Settings → Pages
-3. Set source to "GitHub Actions"
-4. Create `.github/workflows/deploy.yml`:
+This repository is configured for deployment to GitHub Pages at https://Philipbball.github.io/portfolio/.
 
-```yaml
-name: Deploy
-on: [push]
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - run: npm install && npm run build
-      - uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-```
+1. Make sure the repository is public.
+2. Go to Settings → Pages.
+3. Set the source to "GitHub Actions".
+4. The workflow in `.github/workflows/deploy.yml` will build and publish the site automatically on every push to `main`.
+
+The site uses the Astro `site` and `base` settings so links and assets resolve correctly under the `/portfolio/` path.
 
 ### Cloudflare Pages
 
