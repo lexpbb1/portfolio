@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title="Home" description="Welcome to my portfolio">
@@ -8,8 +10,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <h1>Welcome</h1>
       <p>This is your personal portfolio website built with Astro and Markdown.</p>
       <div class="cta-buttons">
-        <a href="/blog" class="btn btn-primary">Read Blog</a>
-        <a href="/projects" class="btn btn-secondary">View Projects</a>
+        <a href={`${base}blog/`} class="btn btn-primary">Read Blog</a>
+        <a href={`${base}projects/`} class="btn btn-secondary">View Projects</a>
       </div>
     </div>
   </section>
@@ -21,42 +23,42 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <div class="section-card">
           <h3>Blog</h3>
           <p>Articles, thoughts, and insights on various topics.</p>
-          <a href="/blog">Explore →</a>
+          <a href={`${base}blog/`}>Explore →</a>
         </div>
         <div class="section-card">
           <h3>Projects</h3>
           <p>Showcase of my work and side projects.</p>
-          <a href="/projects">View →</a>
+          <a href={`${base}projects/`}>View →</a>
         </div>
         <div class="section-card">
           <h3>Publications</h3>
           <p>Academic papers and published articles.</p>
-          <a href="/publications">Discover →</a>
+          <a href={`${base}publications/`}>Discover →</a>
         </div>
         <div class="section-card">
           <h3>Talks</h3>
           <p>Presentations and conference talks.</p>
-          <a href="/talks">Watch →</a>
+          <a href={`${base}talks/`}>Watch →</a>
         </div>
         <div class="section-card">
           <h3>CV</h3>
           <p>My background and professional experience.</p>
-          <a href="/cv">Learn →</a>
+          <a href={`${base}cv/`}>Learn →</a>
         </div>
         <div class="section-card">
           <h3>Leadership</h3>
           <p>Leadership philosophy and initiatives.</p>
-          <a href="/leadership">Read →</a>
+          <a href={`${base}leadership/`}>Read →</a>
         </div>
         <div class="section-card">
           <h3>Travel</h3>
           <p>Travel stories and adventures.</p>
-          <a href="/travel">Explore →</a>
+          <a href={`${base}travel/`}>Explore →</a>
         </div>
         <div class="section-card">
           <h3>Experiments</h3>
           <p>Experimental projects and ideas.</p>
-          <a href="/experiments">Discover →</a>
+          <a href={`${base}experiments/`}>Discover →</a>
         </div>
       </div>
     </div>
