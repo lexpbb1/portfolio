@@ -1,207 +1,52 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-
 const base = import.meta.env.BASE_URL;
 ---
 
-<BaseLayout title="Home" description="Welcome to my portfolio">
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Welcome</h1>
-      <p>This is your personal portfolio website built with Astro and Markdown.</p>
-      <div class="cta-buttons">
-        <a href={`${base}blog/`} class="btn btn-primary">Read Blog</a>
-        <a href={`${base}projects/`} class="btn btn-secondary">View Projects</a>
+<BaseLayout title="Phil Ball — Economics, evidence and public value" description="Portfolio of economics, evidence, data and public-value work">
+  <div class="home-shell">
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">Economics · evidence · data · public value</span>
+        <h1>Make complex systems<br/><em>inspectable.</em></h1>
+        <p>I use economics, evidence synthesis and data to understand how public systems work, where assumptions break, and what information decision-makers actually need.</p>
+        <div class="hero-actions">
+          <a class="button primary" href={`${base}evidence-map/`}>Explore the Evidence Lab</a>
+          <a class="button secondary" href={`${base}projects/`}>View projects</a>
+        </div>
       </div>
-    </div>
-  </section>
+      <div class="hero-orbit" aria-hidden="true">
+        <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="core">Evidence</div>
+        <span class="sat s1">Policy</span><span class="sat s2">Data</span><span class="sat s3">Systems</span><span class="sat s4">Value</span>
+      </div>
+    </section>
 
-  <section class="featured">
-    <div class="featured-container">
-      <h2>Featured Sections</h2>
-      <div class="section-grid">
-        <div class="section-card">
-          <h3>Blog</h3>
-          <p>Articles, thoughts, and insights on various topics.</p>
-          <a href={`${base}blog/`}>Explore →</a>
-        </div>
-        <div class="section-card">
-          <h3>Projects</h3>
-          <p>Showcase of my work and side projects.</p>
-          <a href={`${base}projects/`}>View →</a>
-        </div>
-        <div class="section-card">
-          <h3>Publications</h3>
-          <p>Academic papers and published articles.</p>
-          <a href={`${base}publications/`}>Discover →</a>
-        </div>
-        <div class="section-card">
-          <h3>Talks</h3>
-          <p>Presentations and conference talks.</p>
-          <a href={`${base}talks/`}>Watch →</a>
-        </div>
-        <div class="section-card">
-          <h3>CV</h3>
-          <p>My background and professional experience.</p>
-          <a href={`${base}cv/`}>Learn →</a>
-        </div>
-        <div class="section-card">
-          <h3>Leadership</h3>
-          <p>Leadership philosophy and initiatives.</p>
-          <a href={`${base}leadership/`}>Read →</a>
-        </div>
-        <div class="section-card">
-          <h3>Travel</h3>
-          <p>Travel stories and adventures.</p>
-          <a href={`${base}travel/`}>Explore →</a>
-        </div>
-        <div class="section-card">
-          <h3>Experiments</h3>
-          <p>Experimental projects and ideas.</p>
-          <a href={`${base}experiments/`}>Discover →</a>
-        </div>
-      </div>
-    </div>
-  </section>
+    <section class="ticker" aria-label="Portfolio themes">
+      <span>Evidence mapping</span><i>•</i><span>Place & devolution</span><i>•</i><span>Economic appraisal</span><i>•</i><span>Data science</span><i>•</i><span>Leadership</span><i>•</i><span>Experiments</span>
+    </section>
+
+    <section class="feature-grid">
+      <a class="feature-card feature-main" href={`${base}evidence-map/`}>
+        <span class="eyebrow">Interactive project</span>
+        <h2>Evidence Lab</h2>
+        <p>A dynamic causal map that separates direct from indirect evidence, rates confidence transparently, links every claim to published sources and makes the gaps visible.</p>
+        <span class="arrow">Open the evidence map →</span>
+        <div class="mini-network" aria-hidden="true"><i></i><i></i><i></i><i></i><b></b><b></b><b></b></div>
+      </a>
+      <a class="feature-card" href={`${base}projects/`}><span class="eyebrow">Work</span><h2>Projects</h2><p>Analytical tools, research, prototypes and applied economic work.</p><span class="arrow">Browse projects →</span></a>
+      <a class="feature-card" href={`${base}publications/`}><span class="eyebrow">Research</span><h2>Publications</h2><p>Published work and longer-form analysis, with methods and sources visible.</p><span class="arrow">Read publications →</span></a>
+      <a class="feature-card" href={`${base}blog/`}><span class="eyebrow">Thinking</span><h2>Notes & essays</h2><p>Shorter pieces on economics, policy, evidence, systems and technology.</p><span class="arrow">Read notes →</span></a>
+      <a class="feature-card" href={`${base}experiments/`}><span class="eyebrow">Build</span><h2>Experiments</h2><p>Interactive prototypes and things worth testing before they become formal projects.</p><span class="arrow">Explore experiments →</span></a>
+    </section>
+
+    <section class="principle">
+      <span class="eyebrow">Working principle</span>
+      <blockquote>Don’t hide uncertainty behind a polished conclusion. Show the mechanism, the evidence, the counter-evidence and the gap.</blockquote>
+    </section>
+  </div>
+
+  <style>
+    .home-shell{max-width:1380px;margin:0 auto;padding:0 clamp(1rem,3vw,2.5rem) 5rem}.hero{min-height:68vh;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(320px,.75fr);gap:3rem;align-items:center;padding:clamp(3rem,8vw,7rem) 0 4rem}.eyebrow{text-transform:uppercase;letter-spacing:.15em;font-size:.72rem;font-weight:800;color:var(--accent)}.hero h1{font-size:clamp(3.5rem,8vw,7.5rem);line-height:.87;letter-spacing:-.065em;margin:.7rem 0 1.7rem}.hero h1 em{font-style:normal;color:var(--accent)}.hero-copy>p{font-size:clamp(1.05rem,2vw,1.28rem);line-height:1.65;max-width:760px;color:var(--text-secondary)}.hero-actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.8rem}.button{display:inline-block;padding:.85rem 1.1rem;border-radius:12px;text-decoration:none;font-weight:750;border:1px solid var(--border);transition:.2s ease}.button.primary{background:var(--accent);color:white;border-color:var(--accent)}.button.secondary{background:var(--bg-secondary)}.button:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(20,32,51,.12)}.hero-orbit{height:390px;position:relative;display:grid;place-items:center}.orbit{position:absolute;border:1px solid var(--border);border-radius:50%;animation:spin 24s linear infinite}.orbit-a{width:300px;height:300px}.orbit-b{width:210px;height:210px;animation-direction:reverse;animation-duration:18s}.core{width:110px;height:110px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:white;font-weight:800;box-shadow:0 20px 55px rgba(53,89,224,.28)}.sat{position:absolute;background:var(--bg-secondary);border:1px solid var(--border);border-radius:999px;padding:.5rem .75rem;font-size:.78rem;font-weight:700;box-shadow:0 8px 22px rgba(20,32,51,.08)}.s1{top:32px;left:45%}.s2{right:18px;top:49%}.s3{bottom:30px;left:42%}.s4{left:0;top:48%}@keyframes spin{to{transform:rotate(360deg)}}.ticker{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:.95rem 0;display:flex;gap:1rem;align-items:center;overflow:auto;white-space:nowrap;color:var(--text-secondary);font-size:.86rem}.ticker i{color:var(--accent)}.feature-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding:3.5rem 0}.feature-card{position:relative;min-height:250px;padding:1.5rem;border:1px solid var(--border);border-radius:22px;background:var(--bg-secondary);text-decoration:none;overflow:hidden;transition:.22s ease}.feature-card:hover{transform:translateY(-4px);box-shadow:0 18px 45px rgba(20,32,51,.1)}.feature-card h2{font-size:2rem;margin:.45rem 0}.feature-card p{max-width:620px;line-height:1.6;color:var(--text-secondary)}.feature-main{grid-column:1/-1;min-height:340px;background:linear-gradient(135deg,var(--bg-secondary),var(--accent-soft))}.feature-main h2{font-size:clamp(2.7rem,6vw,5rem);letter-spacing:-.045em}.arrow{position:absolute;left:1.5rem;bottom:1.4rem;color:var(--accent);font-weight:750}.mini-network{position:absolute;right:4%;top:8%;width:330px;height:260px;opacity:.6}.mini-network i{position:absolute;width:22px;height:22px;border-radius:50%;background:var(--accent)}.mini-network i:nth-child(1){left:20px;top:110px}.mini-network i:nth-child(2){left:130px;top:35px}.mini-network i:nth-child(3){right:20px;top:100px}.mini-network i:nth-child(4){left:150px;bottom:20px}.mini-network b{position:absolute;height:2px;background:var(--accent);transform-origin:left center}.mini-network b:nth-of-type(1){width:130px;left:40px;top:115px;transform:rotate(-31deg)}.mini-network b:nth-of-type(2){width:150px;left:150px;top:55px;transform:rotate(22deg)}.mini-network b:nth-of-type(3){width:130px;left:175px;top:145px;transform:rotate(72deg)}.principle{padding:3rem 0;border-top:1px solid var(--border)}blockquote{font-size:clamp(1.8rem,4vw,3.6rem);line-height:1.12;letter-spacing:-.035em;max-width:1050px;margin:1rem 0}.navbar{backdrop-filter:blur(16px)}
+    @media(max-width:900px){.hero{grid-template-columns:1fr;min-height:auto}.hero-orbit{height:280px}.orbit-a{width:230px;height:230px}.orbit-b{width:160px;height:160px}.feature-grid{grid-template-columns:1fr}.feature-main{grid-column:auto}.mini-network{opacity:.2;right:-70px}.feature-card{min-height:240px}}
+  </style>
 </BaseLayout>
-
-<style>
-  .hero {
-    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
-    color: white;
-    padding: 4rem 2rem;
-    text-align: center;
-  }
-
-  .hero-content h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-  }
-
-  .hero-content p {
-    font-size: 1.3rem;
-    margin-bottom: 2rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .cta-buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .btn {
-    padding: 0.75rem 1.5rem;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: transform 0.2s, box-shadow 0.2s;
-    display: inline-block;
-  }
-
-  .btn-primary {
-    background: white;
-    color: var(--accent);
-  }
-
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  }
-
-  .btn-secondary {
-    background: transparent;
-    color: white;
-    border: 2px solid white;
-  }
-
-  .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-2px);
-  }
-
-  .featured {
-    padding: 4rem 2rem;
-  }
-
-  .featured-container {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .featured h2 {
-    text-align: center;
-    margin-bottom: 3rem;
-    font-size: 2rem;
-  }
-
-  .section-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-  }
-
-  .section-card {
-    padding: 2rem;
-    background: var(--bg-secondary);
-    border-radius: 8px;
-    border: 1px solid var(--border);
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-
-  .section-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  }
-
-  .section-card h3 {
-    margin-top: 0;
-    margin-bottom: 0.5rem;
-    font-size: 1.3rem;
-  }
-
-  .section-card p {
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-  }
-
-  .section-card a {
-    color: var(--accent);
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.2s;
-  }
-
-  .section-card a:hover {
-    color: var(--accent-hover);
-  }
-
-  @media (max-width: 768px) {
-    .hero-content h1 {
-      font-size: 2rem;
-    }
-
-    .hero-content p {
-      font-size: 1.1rem;
-    }
-
-    .hero {
-      padding: 2rem 1rem;
-    }
-
-    .featured {
-      padding: 2rem 1rem;
-    }
-
-    .featured h2 {
-      font-size: 1.5rem;
-    }
-
-    .section-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
