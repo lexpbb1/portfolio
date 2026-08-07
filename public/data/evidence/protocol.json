@@ -1,0 +1,35 @@
+{
+  "reviewType": "Rapid Evidence Assessment",
+  "dateSearched": "2026-08-08",
+  "question": "What does published evidence say about the main causal pathways through which greater English devolution could affect local decision-making, integration and prevention, public-service performance, fiscal incentives, growth, accountability, fairness and system stewardship?",
+  "scope": {
+    "populationContext": "Subnational and local government, prioritising England and OECD settings; wider international evidence used where it informs mechanisms and is explicitly labelled indirect.",
+    "interventionsExposures": "Political, administrative and fiscal decentralisation; local fiscal autonomy; integrated/place-based service governance; transparency and accountability; institutional capacity; equalisation and national stewardship.",
+    "comparators": "More centralised arrangements, alternative decentralisation designs, pre-reform periods, or cross-jurisdiction variation depending on study design.",
+    "outcomes": "Decision responsiveness, coordination, prevention, service efficiency and quality, accountability, public investment, growth, fiscal equity and implementation capability.",
+    "time": "No strict publication-date cut-off; emphasis on high-value reviews, evaluations and current English institutional evidence."
+  },
+  "inclusion": [
+    "Peer-reviewed empirical studies and evidence reviews relevant to a defined pathway",
+    "Official evaluations and audit reports with transparent methods",
+    "High-quality international synthesis from OECD, World Bank and comparable institutions",
+    "English fiscal analyses that directly assess distributional or incentive mechanisms"
+  ],
+  "exclusion": [
+    "Commentary used as evidence of effect",
+    "Unverified claims or inaccessible sources where key study details could not be checked",
+    "Purely normative arguments without empirical or institutional evidence",
+    "Unpublished internal material"
+  ],
+  "searchApproach": "Targeted rapid searches across GOV.UK, NAO, OECD, IFS, World Bank, academic publisher/repository pages and citation-linked literature. Searches deliberately sought positive, null and contradictory evidence. Each source included in the database was checked against an accessible publisher, repository or official page.",
+  "screeningAccount": {
+    "note": "This is a rapid, decision-focused search rather than a systematic review. Search results were screened iteratively by pathway and stopped when additional searches were mainly returning duplicates, lower-relevance commentary or studies already represented by stronger syntheses. Counts are not presented as PRISMA counts because the search interfaces used did not expose reliable deduplicated corpus totals."
+  },
+  "appraisal": "Evidence is rated against relevance, identification/design strength, directness to the pathway, consistency, caveats and transferability. Body-of-evidence confidence is reported as strong, moderate, developing or limited. These labels are public-facing translations of standard evidence-confidence concepts and are not derived from unpublished guidance.",
+  "shortcutsAndBias": [
+    "Database coverage is not exhaustive and paywalled literature may be under-represented.",
+    "The review prioritises syntheses and decision-relevant English evidence rather than extracting every primary study within each review.",
+    "International evidence is used for mechanisms only where English direct evidence is weak; transferability is explicitly caveated.",
+    "Sector-specific prevention and culture/sport pathways require dedicated follow-up REAs."
+  ]
+}
