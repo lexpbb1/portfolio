@@ -6,6 +6,17 @@ date: 2026-08-08
 author: Philip Ball
 ---
 
+## Executive summary
+
+**Conclusion:** need is an essential equity criterion, but it is not a complete allocation rule. Funding based only on poor lagging outcomes can arrive too late, back an unsuitable intervention, or overlook the capacity and uptake needed to turn money into results.
+
+- **Keep the equity objective:** high-need places should not be penalised because historic underinvestment has weakened their capacity.
+- **Target the mechanism as well as the outcome:** identify modifiable lead indicators and preventive opportunities earlier in the theory of change.
+- **Match funding to readiness:** where need is high but delivery capacity is low, invest first in capability, engagement and barrier removal.
+- **Manage public value actively:** compare the likely value of the next pound, protect credible prevention while benefits mature, and avoid uniform “salami-slicing”.
+
+The evidence supports this direction, but not a universal claim that prevention is always cheaper or more effective. Comparative cost-effectiveness evidence remains limited across several DCMS sectors.
+
 ## Can place-based funding be well targeted—and still misallocated?
 
 Public funding is often directed towards the places with the poorest outcomes. The equity case is compelling: if some communities experience much worse health, participation, safety or economic outcomes, public policy should not be indifferent to those inequalities.
@@ -16,6 +27,9 @@ This project examines a potential failure mode in place-based policy: funding ca
 
 > **Outcome-based place targeting can misallocate the form and timing of intervention—not necessarily the entitlement to investment—when lagging need is treated as sufficient evidence of a workable mechanism, local absorptive capacity or high marginal return.**
 
+<details>
+<summary><strong>Question, scope and approach</strong></summary>
+
 ## The question
 
 I conducted a quick critical appraisal around the following question:
@@ -23,6 +37,8 @@ I conducted a quick critical appraisal around the following question:
 > Under what conditions does allocating place-based public funding primarily according to poor lagging outcomes—rather than modifiable lead indicators, preventive opportunities and expected marginal returns—reduce effectiveness or value for money? When does earlier preventive targeting perform better without weakening the equity case for prioritising high-need places?
 
 The assessment began with youth and civil society, then broadened across arts and culture, heritage, sport, the visitor economy, creative industries and digital infrastructure.
+
+</details>
 
 ## What the evidence says
 
@@ -34,6 +50,9 @@ Second, replacing lagging outcomes with a predictive score is not a complete sol
 
 The more defensible conclusion is that **need is an essential equity criterion, but an incomplete allocation rule**. Decisions should also consider the causal mechanism, additionality, delivery capacity, uptake and expected marginal benefit.
 
+<details>
+<summary><strong>Youth: preventive value can appear only after a delay</strong></summary>
+
 ### 1. Youth: preventive value can appear only after a delay
 
 The strongest UK example is Sure Start. A quasi-experimental evaluation exploiting its staged rollout estimated that every £1 spent generated £2.05 in societal benefits, with around 90% of the initial public cost eventually recovered through government savings. Health benefits were especially concentrated in disadvantaged areas.
@@ -44,11 +63,21 @@ The Early Intervention Youth Fund illustrates the corresponding uncertainty. Its
 
 The Youth Endowment Fund’s review of place-based approaches similarly stresses local knowledge, community involvement, shared data and delivery infrastructure, while finding relatively few rigorous impact evaluations. [Youth Endowment Fund](https://youthendowmentfund.org.uk/place-based-approaches-to-tackling-local-youth-violence/)
 
+</details>
+
+<details>
+<summary><strong>Civil society: capacity is part of the intervention</strong></summary>
+
 ### 2. Civil society: capacity is part of the intervention
 
 Civil-society organisations do not convert grants into outcomes mechanically. Sustainable funding, workforce stability, trusted relationships, commissioning arrangements and organisational capability all influence delivery.
 
 A DCMS evidence scan also warns that narrow, activity-based KPIs may undermine holistic, person-centred provision and place a disproportionate administrative burden on smaller organisations. This is primarily evidence about mechanisms rather than causal effectiveness, but it suggests that funding a high-need place without supporting its civic infrastructure may create a predictable implementation failure. [DCMS](https://www.gov.uk/government/publications/impacts-of-public-services-being-delivered-by-civil-society-organisations/research-report-impacts-of-public-services-being-delivered-by-civil-society-organisations)
+
+</details>
+
+<details>
+<summary><strong>Heritage: need does not imply investment readiness</strong></summary>
 
 ### 3. Heritage: need does not imply investment readiness
 
@@ -56,17 +85,32 @@ Research commissioned by the National Lottery Heritage Fund comes unusually clos
 
 Not all places were immediately ready to use substantial grants effectively. The report recommended seed funding, capacity building, a pipeline for places at different stages of readiness, and clear entry and exit strategies. This is not controlled causal evidence, but it offers a strong, sector-specific account of the mechanism. [National Lottery Heritage Fund](https://www.heritagefund.org.uk/sites/default/files/media/attachments/Heritage-Place-Report-Wavehil-DC-Research.pdf)
 
+</details>
+
+<details>
+<summary><strong>Sport: high inactivity does not guarantee participation</strong></summary>
+
 ### 4. Sport: high inactivity does not guarantee participation
 
 A DCMS rapid review found that two well-designed neighbourhood interventions produced no significant effect on physical activity, partly because awareness and participation were low. Peer-led approaches were more promising, particularly where peer leaders were trained and engagement was sufficiently intensive.
 
 The same review found weak cost evidence and limited knowledge of distributional effects. New infrastructure may disproportionately benefit residents who are already better able to use it unless local barriers—such as safety, affordability, storage or health constraints—are addressed. [DCMS physical-activity review](https://www.gov.uk/government/publications/improving-physical-activity-and-reducing-physical-activity-inequalities-literature-review/improving-physical-activity-and-reducing-physical-activity-inequalities-literature-review)
 
+</details>
+
+<details>
+<summary><strong>Culture: benefits are plausible, but geographic returns remain uncertain</strong></summary>
+
 ### 5. Culture: benefits are plausible, but geographic returns remain uncertain
 
 The Culture and Heritage Capital programme reviewed approximately 3,500 papers and examined around 160 in full. It found credible health and wellbeing evidence for some forms of cultural engagement, but also substantial limitations: much of the research is observational, experimental samples are often small, geographical distribution is poorly understood and the valuation models generally exclude intervention costs.
 
 The evidence therefore supports cultural participation as a possible preventive mechanism. It does not establish that the places with the worst current health outcomes necessarily offer the highest marginal cultural return. [DCMS Culture and Heritage Capital review](https://assets.publishing.service.gov.uk/media/678e2ecf432c55fe2988f615/rpt_-_Frontier_Health_and_Wellbeing_Final_Report_09_12_24_accessible_final.pdf)
+
+</details>
+
+<details>
+<summary><strong>Digital infrastructure: availability is not adoption</strong></summary>
 
 ### 6. Digital infrastructure: availability is not adoption
 
@@ -76,11 +120,18 @@ Provision alone did not guarantee productive use. Adoption, digital skills, comp
 
 The evaluation of the UK Superfast Broadband Programme reinforces the point. Take-up and contractual gain-sharing materially affected value for money, while the additionality of public subsidy declined as commercial conditions changed. [DCMS Superfast Broadband evaluation](https://assets.publishing.service.gov.uk/media/5b7a7cc640f0b6433bf8e954/Superfast_Integrated_Report.pdf)
 
+</details>
+
+<details>
+<summary><strong>Creative industries and tourism: gross activity is not additional impact</strong></summary>
+
 ### 7. Creative industries and tourism: gross activity is not additional impact
 
 The Creative Industries Clusters Programme generated evidence of new collaboration, skills and innovation. But business effects were often self-reported, response rates were low for some estimates, and more intensively engaged firms could differ systematically from other participants. [UKRI](https://www.ukri.org/wp-content/uploads/2024/07/AHRC-01072024-FRONTIER-BOP-CICP-CRDP-final-evaluation-report-STC2-20240524.pdf)
 
 Tourism evaluation has similarly struggled to distinguish additional visitor expenditure from deadweight, displacement and activity that would have happened anyway. A place can report more spending without demonstrating an equivalent increase in national welfare or local net value. [East Midlands tourism evaluation](https://irep.ntu.ac.uk/id/eprint/475/1/202789_evaluationoftourismreport2010.pdf)
+
+</details>
 
 ## A better allocation model
 
@@ -119,6 +170,9 @@ Prioritisation and transition decisions should therefore ask four separate quest
 
 That creates a more useful range of options than either uniform cuts or a binary “continue or stop”: protect, scale, redesign, taper carefully, replace the intervention, or shift temporarily towards capacity building. A managed transition should protect viable local capability, recognise sunk relationship costs and monitor for deterioration rather than assuming that withdrawal is consequence-free.
 
+<details>
+<summary><strong>Limits and next research steps</strong></summary>
+
 ## Limits and next research steps
 
 This was a rapid critical appraisal rather than a full systematic review. The evidence is uneven across sectors, and few studies directly compare need-based geographic allocation with prevention- or marginal-return-based alternatives.
@@ -126,6 +180,8 @@ This was a rapid critical appraisal rather than a full systematic review. The ev
 The next empirical step would be to test whether observable lead indicators improve prediction of programme uptake, delivery and marginal effects after controlling for baseline need. Particular care would be needed to avoid penalising high-need places simply because historic underinvestment has weakened their measured capacity.
 
 The policy goal is not to retreat from equity. It is to manage public value actively: protect the entitlement of high-need places to support while matching the timing and form of that support to the pathway most likely to produce lasting change—and prioritising deliberately when resources cannot support everything equally.
+
+</details>
 
 ---
 

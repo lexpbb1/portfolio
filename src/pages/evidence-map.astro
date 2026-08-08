@@ -1,249 +1,132 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-const base = import.meta.env.BASE_URL;
+import studiesData from '../../public/data/evidence/studies.json';
+import pathwaysData from '../../public/data/evidence/pathways.json';
+import synthesisData from '../../public/data/evidence/synthesis.json';
+import protocol from '../../public/data/evidence/protocol.json';
+
+const labels = {
+  devolution: 'Devolution', 'local-decisions': 'Local decisions', integration: 'Integrated delivery', prevention: 'Prevention', outcomes: 'Public outcomes',
+  'fiscal-autonomy': 'Fiscal autonomy', investment: 'Local investment', growth: 'Growth', capacity: 'Local capacity', 'effective-devolution': 'Effective use of powers',
+  data: 'Timely data', accountability: 'Local accountability', performance: 'Performance', equalisation: 'Equalisation', fairness: 'Fairness between places',
+  stewardship: 'National stewardship', 'system-learning': 'System learning', 'culture-sport': 'Culture and sport', 'place-outcomes': 'Place outcomes'
+};
+const groups = [
+  { id: 'services', title: 'Decisions, integration and prevention', description: 'How moving decisions closer to place might affect service design and outcomes.', ids: ['p1','p2','p3','p4'] },
+  { id: 'fiscal', title: 'Fiscal powers, investment and fairness', description: 'What fiscal autonomy can enable—and why equalisation remains important.', ids: ['p5','p6','p10'] },
+  { id: 'institutions', title: 'Capacity, data and accountability', description: 'The institutional conditions that shape whether devolved powers work in practice.', ids: ['p7','p8','p9','p11'] },
+  { id: 'sectors', title: 'Sector contribution to place', description: 'The evidence connecting culture and sport interventions to wider place outcomes.', ids: ['p12'] }
+];
+const evidencePayload = { pathways: pathwaysData.pathways, studies: studiesData.studies, labels, protocol };
 ---
 
-<BaseLayout title="Evidence Lab — Devolution pathways" description="Interactive evidence map of causal pathways, confidence, sources and research gaps">
-  <div class="evidence-shell" data-base={base}>
+<BaseLayout title="Evidence Lab — Devolution pathways" description="Accessible evidence map of devolution pathways, confidence, sources and research gaps">
+  <main class="evidence-shell">
     <header class="evidence-hero">
-      <div>
-        <span class="eyebrow">Evidence Lab</span>
-        <h1>Devolution: what does the evidence support?</h1>
-        <p class="lede">Explore causal pathways rather than a single headline claim. Each link separates direct from indirect evidence, reports confidence transparently, and surfaces what we still do not know.</p>
-      </div>
-      <div class="hero-badge">
-        <span>Rapid Evidence Assessment</span>
-        <strong>Public evidence only</strong>
-        <small>Last updated 8 Aug 2026</small>
-      </div>
+      <div><span class="eyebrow">Evidence Lab</span><h1>Devolution: what does the evidence support?</h1><p class="lede">A rapid assessment of the mechanisms connecting devolved powers to public outcomes—not a single headline claim.</p></div>
+      <div class="hero-badge"><span>Rapid Evidence Assessment</span><strong>Public evidence only</strong><small>Last updated 8 August 2026</small></div>
     </header>
 
-    <section class="summary-grid" aria-label="Evidence summary">
-      <article class="summary-card"><small>Core conclusion</small><strong>Benefits are conditional, not automatic</strong></article>
-      <article class="summary-card"><small>Strongest mechanism</small><strong>Equalisation protects against fiscal divergence</strong></article>
-      <article class="summary-card"><small>Key dependency</small><strong>Institutional capacity</strong></article>
-      <article class="summary-card"><small>Weakest headline claim</small><strong>Fiscal devolution → growth</strong></article>
+    <section class="conclusion card" aria-labelledby="conclusion-title">
+      <span class="eyebrow">Conclusion up front</span>
+      <h2 id="conclusion-title">Benefits are conditional, not automatic.</h2>
+      <p>{synthesisData.overall.summary}</p>
+      <div class="decision-grid">
+        <div><small>Strongest finding</small><strong>Equalisation protects against divergence between unequal local tax bases.</strong></div>
+        <div><small>Key dependency</small><strong>Local capacity determines whether powers can be used effectively.</strong></div>
+        <div><small>Weakest claim</small><strong>Fiscal devolution alone cannot be assumed to produce growth.</strong></div>
+      </div>
     </section>
 
-    <section class="workspace">
-      <div class="main-column">
-        <div class="controls card">
+    <section class="map-layout">
+      <div class="map-column">
+        <details class="controls card">
+          <summary>Filter the evidence map <span>Optional</span></summary>
           <div class="control-grid">
-            <label>Evidence confidence
-              <select id="confidenceFilter">
-                <option value="all">All ratings</option>
-                <option value="strong">Strong</option>
-                <option value="moderate">Moderate</option>
-                <option value="developing">Developing</option>
-                <option value="limited">Limited</option>
-              </select>
-            </label>
-            <label>Search pathway or node
-              <input id="searchBox" type="search" placeholder="e.g. capacity, growth, prevention" />
-            </label>
-            <label>Evidence view
-              <select id="evidenceView">
-                <option value="all">Direct + indirect</option>
-                <option value="direct">Direct evidence only</option>
-                <option value="indirect">Indirect evidence only</option>
-              </select>
-            </label>
+            <label>Evidence confidence<select id="confidenceFilter"><option value="all">All ratings</option><option value="strong">Strong</option><option value="moderate">Moderate</option><option value="developing">Developing</option><option value="limited">Limited</option></select></label>
+            <label>Search pathways<input id="searchBox" type="search" placeholder="e.g. capacity or prevention" /></label>
+            <label>Available evidence<select id="evidenceView"><option value="all">Direct and indirect</option><option value="direct">Has direct evidence</option><option value="indirect">Has indirect evidence</option></select></label>
           </div>
-          <div class="actions">
-            <button id="resetBtn">Reset</button>
-            <button id="gapsBtn" class="primary">Highlight evidence gaps</button>
-            <button id="methodBtn">REA method</button>
-          </div>
-        </div>
+          <div class="actions"><button id="resetBtn">Reset filters</button><button id="gapsBtn" aria-pressed="false">Show evidence gaps only</button></div>
+          <p class="filter-status" id="filterStatus" role="status" aria-live="polite"></p>
+        </details>
 
-        <div class="card map-card">
-          <div class="map-heading">
-            <div>
-              <span class="eyebrow">Causal map</span>
-              <h2>Click a pathway to inspect the evidence</h2>
-            </div>
-            <div class="confidence-key">
-              <span><i class="dot strong"></i>Strong</span>
-              <span><i class="dot moderate"></i>Moderate</span>
-              <span><i class="dot developing"></i>Developing</span>
-              <span><i class="dot limited"></i>Limited</span>
-            </div>
-          </div>
-          <svg id="evidenceGraph" viewBox="0 0 1000 720" role="img" aria-label="Interactive causal evidence map"></svg>
-          <div class="map-note">Line colour indicates confidence in the causal pathway, not whether the policy is desirable. Dashed lines indicate developing or limited evidence.</div>
-        </div>
-      </div>
-
-      <aside class="side-column">
-        <section class="card detail-card" id="detailCard">
-          <span class="evidence-chip neutral" id="detailRating">Select a pathway</span>
-          <h2 id="detailTitle">Evidence synopsis</h2>
-          <p id="detailSynopsis">Click a line or node in the map. The panel will show what the evidence supports, which sources are direct or indirect, and the main remaining gap.</p>
-          <div id="detailGap" class="gap-box" hidden></div>
-          <div id="directBlock" class="source-block" hidden>
-            <h3>Direct evidence</h3>
-            <div id="directSources"></div>
-          </div>
-          <div id="indirectBlock" class="source-block" hidden>
-            <h3>Indirect / transferable evidence</h3>
-            <div id="indirectSources"></div>
+        <section class="card pathway-map" aria-labelledby="map-title">
+          <div class="section-heading"><div><span class="eyebrow">Pathway map</span><h2 id="map-title">Select a causal pathway</h2><p>Each card reads from a starting condition to an intermediate or final result. Colour shows confidence in that connection.</p></div><div class="confidence-key" aria-label="Confidence key"><span><i class="dot strong"></i>Strong</span><span><i class="dot moderate"></i>Moderate</span><span><i class="dot developing"></i>Developing</span><span><i class="dot limited"></i>Limited</span></div></div>
+          <div id="pathwayGroups">
+            {groups.map(group => <section class="pathway-group"><header><h3>{group.title}</h3><p>{group.description}</p></header><div class="pathway-list">{pathwaysData.pathways.filter(p => group.ids.includes(p.id)).map(p =>
+              <button class={`pathway ${p.confidence}`} data-id={p.id} data-confidence={p.confidence} data-direct={String(p.directEvidence.length > 0)} data-indirect={String(p.indirectEvidence.length > 0)} data-search={`${labels[p.source]} ${labels[p.target]} ${p.label} ${p.synopsis}`.toLowerCase()} aria-pressed="false">
+                <span class="route"><strong>{labels[p.source]}</strong><span aria-hidden="true">→</span><strong>{labels[p.target]}</strong></span><span class="claim">{p.label}</span><span class="rating">{p.confidence} confidence</span>
+              </button>)}
+            </div></section>)}
           </div>
         </section>
+      </div>
 
-        <section class="card synthesis-card">
-          <span class="eyebrow">Overall synthesis</span>
-          <h2 id="overallHeadline">Loading…</h2>
-          <p id="overallSummary"></p>
+      <aside class="detail-column">
+        <section class="card detail-card" id="detailCard" tabindex="-1" aria-labelledby="detailTitle">
+          <span class="evidence-chip neutral" id="detailRating">How to use this map</span>
+          <h2 id="detailTitle">Choose any pathway card</h2>
+          <p id="detailSynopsis">The selected card will be outlined and its conclusion, evidence gap and sources will appear here. Filters only change which assessed pathways are shown.</p>
+          <div id="detailGap" class="gap-box" hidden></div>
+          <div id="directBlock" class="source-block" hidden><h3>Direct evidence</h3><div id="directSources"></div></div>
+          <div id="indirectBlock" class="source-block" hidden><h3>Indirect or transferable evidence</h3><div id="indirectSources"></div></div>
         </section>
       </aside>
     </section>
 
-    <section class="card future-section">
-      <div class="section-heading">
-        <div>
-          <span class="eyebrow">Evidence gaps</span>
-          <h2>Future challenges and evidence needs</h2>
-        </div>
-        <p>These are research needs implied by the published evidence base, not strategic recommendations.</p>
-      </div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Challenge</th><th>What the evidence currently says</th><th>Priority evidence need</th></tr></thead>
-          <tbody id="futureTable"></tbody>
-        </table>
-      </div>
-    </section>
+    <details class="card disclosure"><summary>Evidence gaps and future research</summary><div class="disclosure-body"><p>These are research needs implied by the evidence base, not strategic recommendations.</p><div class="challenge-grid">{synthesisData.futureChallenges.map(x => <article><h3>{x.challenge}</h3><p><strong>Current evidence:</strong> {x.whatEvidenceSays}</p><p><strong>Priority need:</strong> {x.evidenceNeed}</p></article>)}</div></div></details>
+    <details class="card disclosure"><summary>Rapid Evidence Assessment method and limitations</summary><div class="disclosure-body"><p><strong>Question:</strong> {protocol.question}</p><p><strong>Search approach:</strong> {protocol.searchApproach}</p><p><strong>Appraisal:</strong> {protocol.appraisal}</p><h3>Rapid-review limitations</h3><ul>{protocol.shortcutsAndBias.map(x => <li>{x}</li>)}</ul></div></details>
+    <script id="evidenceData" type="application/json" set:html={JSON.stringify(evidencePayload)}></script>
+  </main>
 
-    <section class="card methods-panel" id="methodsPanel" hidden>
-      <div class="section-heading">
-        <div><span class="eyebrow">Method</span><h2>Rapid Evidence Assessment protocol</h2></div>
-        <button id="closeMethod">Close</button>
-      </div>
-      <div id="methodContent" class="method-content"></div>
-    </section>
-  </div>
+  <script>
+    const dataElement = document.querySelector('#evidenceData');
+    const data = JSON.parse(dataElement?.textContent || '{"pathways":[],"studies":[],"labels":{}}');
+    const pathways = new Map(data.pathways.map((pathway) => [pathway.id, pathway]));
+    const studies = new Map(data.studies.map((study) => [study.id, study]));
+    const buttons = [...document.querySelectorAll('.pathway')];
+    const confidenceFilter = document.querySelector('#confidenceFilter');
+    const evidenceView = document.querySelector('#evidenceView');
+    const searchBox = document.querySelector('#searchBox');
+    const gapsBtn = document.querySelector('#gapsBtn');
+    let gapsOnly = false;
 
-  <script type="module">
-    import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
-
-    const root = document.querySelector('.evidence-shell');
-    const base = root?.dataset.base || '/';
-    const [studiesData, pathwaysData, synthesisData, protocol] = await Promise.all([
-      fetch(`${base}data/evidence/studies.json`).then(r => r.json()),
-      fetch(`${base}data/evidence/pathways.json`).then(r => r.json()),
-      fetch(`${base}data/evidence/synthesis.json`).then(r => r.json()),
-      fetch(`${base}data/evidence/protocol.json`).then(r => r.json())
-    ]);
-
-    const studies = new Map(studiesData.studies.map(s => [s.id, s]));
-    const pathways = pathwaysData.pathways;
-    const nodes = [
-      ['devolution','Devolution','power'],['local-decisions','Local decisions','power'],['integration','Integrated delivery','services'],['prevention','Prevention','services'],['outcomes','Public outcomes','outcomes'],
-      ['fiscal-autonomy','Fiscal autonomy','fiscal'],['investment','Local investment','fiscal'],['growth','Growth','outcomes'],['capacity','Local capacity','capacity'],['effective-devolution','Effective use of powers','capacity'],
-      ['data','Timely data','accountability'],['accountability','Local accountability','accountability'],['performance','Performance','outcomes'],['equalisation','Equalisation','fiscal'],['fairness','Fairness between places','outcomes'],
-      ['stewardship','National stewardship','centre'],['system-learning','System learning','centre'],['culture-sport','Culture & sport','sector'],['place-outcomes','Place outcomes','sector']
-    ].map(([id,label,cluster]) => ({id,label,cluster}));
-
-    const nodeMeta = new Map(nodes.map(n => [n.id,n]));
-    const links = pathways.map(p => ({...p, source:p.source, target:p.target}));
-    const colours = {strong:'#18794e',moderate:'#b7791f',developing:'#c65d21',limited:'#b42318'};
-    const clusters = {power:'#3559e0',services:'#147d64',fiscal:'#b15c00',capacity:'#8c4f9e',accountability:'#1877a8',outcomes:'#54606f',centre:'#687386',sector:'#9c4668'};
-
-    document.querySelector('#overallHeadline').textContent = synthesisData.overall.headline;
-    document.querySelector('#overallSummary').textContent = synthesisData.overall.summary;
-    document.querySelector('#futureTable').innerHTML = synthesisData.futureChallenges.map(x => `<tr><td><strong>${escapeHtml(x.challenge)}</strong></td><td>${escapeHtml(x.whatEvidenceSays)}</td><td>${escapeHtml(x.evidenceNeed)}</td></tr>`).join('');
-
-    const svg = d3.select('#evidenceGraph');
-    const width=1000,height=720;
-    const defs=svg.append('defs');
-    Object.entries(colours).forEach(([k,c]) => defs.append('marker').attr('id',`arrow-${k}`).attr('viewBox','0 -5 10 10').attr('refX',25).attr('refY',0).attr('markerWidth',7).attr('markerHeight',7).attr('orient','auto').append('path').attr('d','M0,-5L10,0L0,5').attr('fill',c));
-    const linkLayer=svg.append('g'), nodeLayer=svg.append('g');
-
-    const simulation=d3.forceSimulation(nodes)
-      .force('link',d3.forceLink(links).id(d=>d.id).distance(125).strength(.55))
-      .force('charge',d3.forceManyBody().strength(-430))
-      .force('center',d3.forceCenter(width/2,height/2))
-      .force('collision',d3.forceCollide().radius(52));
-
-    const linkSel=linkLayer.selectAll('line').data(links).join('line')
-      .attr('class',d=>`evidence-link ${d.confidence}`)
-      .attr('stroke',d=>colours[d.confidence])
-      .attr('stroke-width',d=>d.confidence==='strong'?5:d.confidence==='moderate'?4:3)
-      .attr('stroke-dasharray',d=>['developing','limited'].includes(d.confidence)?'9 7':null)
-      .attr('marker-end',d=>`url(#arrow-${d.confidence})`)
-      .on('click',(event,d)=>showPathway(d));
-
-    const nodeSel=nodeLayer.selectAll('g').data(nodes).join('g').attr('class','evidence-node').call(d3.drag().on('start',dragstarted).on('drag',dragged).on('end',dragended)).on('click',(event,d)=>showNode(d));
-    nodeSel.append('circle').attr('r',22).attr('fill',d=>clusters[d.cluster] || '#687386');
-    nodeSel.append('text').attr('text-anchor','middle').attr('dy',39).text(d=>d.label);
-
-    simulation.on('tick',()=>{
-      nodes.forEach(d=>{d.x=Math.max(42,Math.min(width-42,d.x));d.y=Math.max(42,Math.min(height-65,d.y));});
-      linkSel.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
-      nodeSel.attr('transform',d=>`translate(${d.x},${d.y})`);
-    });
-
-    function sourceCard(id){
-      const s=studies.get(id); if(!s) return '';
-      const q=s.quality==='high'?'High quality':s.quality==='moderate'?'Moderate quality':s.quality==='not-yet-evaluable'?'Prospective evidence':'Limited quality';
-      return `<article class="source-item"><a href="${s.url}" target="_blank" rel="noreferrer"><strong>${escapeHtml(s.title)}</strong></a><div class="source-meta">${escapeHtml(s.authors)} · ${s.year} · ${escapeHtml(q)}</div><p>${escapeHtml(s.summary)}</p><details><summary>Caveats</summary><p>${escapeHtml(s.caveats)}</p></details></article>`;
+    function escapeHtml(value = '') { return String(value).replace(/[&<>'"]/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#039;','"':'&quot;'}[character])); }
+    function sourceCard(id) {
+      const source = studies.get(id); if (!source) return '';
+      const quality = source.quality === 'not-yet-evaluable' ? 'Prospective evidence' : `${source.quality} quality`;
+      return `<article class="source-item"><a href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer"><strong>${escapeHtml(source.title)} ↗</strong></a><div class="source-meta">${escapeHtml(source.authors)} · ${source.year} · ${escapeHtml(quality)}</div><p>${escapeHtml(source.summary)}</p><details><summary>Study caveats</summary><p>${escapeHtml(source.caveats)}</p></details></article>`;
     }
-
-    function showPathway(p){
-      document.querySelector('#detailRating').textContent = `${titleCase(p.confidence)} confidence`;
-      document.querySelector('#detailRating').className = `evidence-chip ${p.confidence}`;
-      document.querySelector('#detailTitle').textContent = `${nodeMeta.get(p.source.id||p.source)?.label || p.source} → ${nodeMeta.get(p.target.id||p.target)?.label || p.target}`;
-      document.querySelector('#detailSynopsis').textContent = p.synopsis;
-      const gap=document.querySelector('#detailGap'); gap.hidden=false; gap.innerHTML=`<strong>Main evidence gap</strong><p>${escapeHtml(p.gap)}</p>`;
-      const direct=document.querySelector('#directBlock'), indirect=document.querySelector('#indirectBlock');
-      direct.hidden=p.directEvidence.length===0; indirect.hidden=p.indirectEvidence.length===0;
-      document.querySelector('#directSources').innerHTML=p.directEvidence.map(sourceCard).join('');
-      document.querySelector('#indirectSources').innerHTML=p.indirectEvidence.map(sourceCard).join('');
-      linkSel.classed('dimmed',d=>d.id!==p.id); nodeSel.classed('dimmed',d=>d.id!==(p.source.id||p.source)&&d.id!==(p.target.id||p.target));
+    function selectPathway(id, moveFocus = true) {
+      const pathway = pathways.get(id); if (!pathway) return;
+      buttons.forEach(button => { const selected = button.dataset.id === id; button.classList.toggle('selected', selected); button.setAttribute('aria-pressed', String(selected)); });
+      const rating = document.querySelector('#detailRating'); rating.textContent = `${pathway.confidence[0].toUpperCase()}${pathway.confidence.slice(1)} confidence`; rating.className = `evidence-chip ${pathway.confidence}`;
+      document.querySelector('#detailTitle').textContent = `${data.labels[pathway.source]} → ${data.labels[pathway.target]}`;
+      document.querySelector('#detailSynopsis').textContent = pathway.synopsis;
+      const gap = document.querySelector('#detailGap'); gap.hidden = false; gap.innerHTML = `<strong>Main evidence gap</strong><p>${escapeHtml(pathway.gap)}</p>`;
+      const direct = document.querySelector('#directBlock'); const indirect = document.querySelector('#indirectBlock');
+      direct.hidden = pathway.directEvidence.length === 0; indirect.hidden = pathway.indirectEvidence.length === 0;
+      document.querySelector('#directSources').innerHTML = pathway.directEvidence.map(sourceCard).join('');
+      document.querySelector('#indirectSources').innerHTML = pathway.indirectEvidence.map(sourceCard).join('');
+      if (moveFocus && window.matchMedia('(max-width: 1050px)').matches) { const detail = document.querySelector('#detailCard'); detail.scrollIntoView({behavior:'smooth', block:'start'}); detail.focus({preventScroll:true}); }
     }
-
-    function showNode(n){
-      const related=pathways.filter(p=>p.source===n.id||p.target===n.id);
-      document.querySelector('#detailRating').textContent=`${related.length} evidence pathway${related.length===1?'':'s'}`;
-      document.querySelector('#detailRating').className='evidence-chip neutral';
-      document.querySelector('#detailTitle').textContent=n.label;
-      document.querySelector('#detailSynopsis').textContent=related.length?`This node is connected to ${related.length} assessed pathway${related.length===1?'':'s'}. Click a highlighted line for the evidence synopsis.`:'No pathway has yet been assessed for this node.';
-      document.querySelector('#detailGap').hidden=true; document.querySelector('#directBlock').hidden=true; document.querySelector('#indirectBlock').hidden=true;
-      const ids=new Set(related.map(p=>p.id)); linkSel.classed('dimmed',d=>!ids.has(d.id)); nodeSel.classed('dimmed',d=>d.id!==n.id&&!related.some(p=>p.source===d.id||p.target===d.id));
+    function applyFilters() {
+      const confidence = confidenceFilter.value; const evidence = evidenceView.value; const query = searchBox.value.trim().toLowerCase(); let shown = 0;
+      buttons.forEach(button => { const visible = (confidence === 'all' || button.dataset.confidence === confidence) && (evidence === 'all' || button.dataset[evidence] === 'true') && (!query || button.dataset.search.includes(query)) && (!gapsOnly || ['developing','limited'].includes(button.dataset.confidence)); button.hidden = !visible; if (visible) shown += 1; });
+      document.querySelectorAll('.pathway-group').forEach(group => { group.hidden = ![...group.querySelectorAll('.pathway')].some(button => !button.hidden); });
+      document.querySelector('#filterStatus').textContent = `${shown} of ${buttons.length} pathways shown.`;
     }
-
-    function applyFilters(){
-      const conf=document.querySelector('#confidenceFilter').value;
-      const q=document.querySelector('#searchBox').value.trim().toLowerCase();
-      const view=document.querySelector('#evidenceView').value;
-      linkSel.classed('hidden-link',d=>{
-        if(conf!=='all'&&d.confidence!==conf)return true;
-        if(view==='direct'&&d.directEvidence.length===0)return true;
-        if(view==='indirect'&&d.indirectEvidence.length===0)return true;
-        if(q){const hay=`${d.label} ${d.synopsis} ${nodeMeta.get(d.source.id||d.source)?.label} ${nodeMeta.get(d.target.id||d.target)?.label}`.toLowerCase();if(!hay.includes(q))return true;}
-        return false;
-      }).classed('dimmed',false);
-      nodeSel.classed('dimmed',false);
-    }
-
-    document.querySelector('#confidenceFilter').addEventListener('change',applyFilters);
-    document.querySelector('#evidenceView').addEventListener('change',applyFilters);
-    document.querySelector('#searchBox').addEventListener('input',applyFilters);
-    document.querySelector('#resetBtn').addEventListener('click',()=>{document.querySelector('#confidenceFilter').value='all';document.querySelector('#evidenceView').value='all';document.querySelector('#searchBox').value='';applyFilters();});
-    document.querySelector('#gapsBtn').addEventListener('click',()=>{linkSel.classed('dimmed',d=>!['developing','limited'].includes(d.confidence));nodeSel.classed('dimmed',false);});
-    document.querySelector('#methodBtn').addEventListener('click',()=>{document.querySelector('#methodsPanel').hidden=false;document.querySelector('#methodContent').innerHTML=`<p><strong>Question:</strong> ${escapeHtml(protocol.question)}</p><p><strong>Search approach:</strong> ${escapeHtml(protocol.searchApproach)}</p><p><strong>Appraisal:</strong> ${escapeHtml(protocol.appraisal)}</p><h3>Rapid-review limitations</h3><ul>${protocol.shortcutsAndBias.map(x=>`<li>${escapeHtml(x)}</li>`).join('')}</ul>`;document.querySelector('#methodsPanel').scrollIntoView({behavior:'smooth'});});
-    document.querySelector('#closeMethod').addEventListener('click',()=>document.querySelector('#methodsPanel').hidden=true);
-
-    function dragstarted(event,d){if(!event.active)simulation.alphaTarget(.3).restart();d.fx=d.x;d.fy=d.y}
-    function dragged(event,d){d.fx=event.x;d.fy=event.y}
-    function dragended(event,d){if(!event.active)simulation.alphaTarget(0);d.fx=null;d.fy=null}
-    function titleCase(x){return x.charAt(0).toUpperCase()+x.slice(1)}
-    function escapeHtml(value=''){return String(value).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#039;','"':'&quot;'}[c]));}
+    buttons.forEach(button => button.addEventListener('click', () => selectPathway(button.dataset.id)));
+    confidenceFilter.addEventListener('change', applyFilters); evidenceView.addEventListener('change', applyFilters); searchBox.addEventListener('input', applyFilters);
+    gapsBtn.addEventListener('click', () => { gapsOnly = !gapsOnly; gapsBtn.setAttribute('aria-pressed', String(gapsOnly)); gapsBtn.textContent = gapsOnly ? 'Show all pathways' : 'Show evidence gaps only'; applyFilters(); });
+    document.querySelector('#resetBtn').addEventListener('click', () => { confidenceFilter.value = 'all'; evidenceView.value = 'all'; searchBox.value = ''; gapsOnly = false; gapsBtn.setAttribute('aria-pressed','false'); gapsBtn.textContent = 'Show evidence gaps only'; applyFilters(); });
+    applyFilters();
   </script>
 
   <style>
-    .evidence-shell{max-width:1380px;margin:0 auto;padding:2rem clamp(1rem,3vw,2.5rem) 4rem}.evidence-hero{display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:end;padding:2rem 0 1rem}.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:.72rem;font-weight:800;color:var(--accent)}.evidence-hero h1{font-size:clamp(2.5rem,6vw,5.4rem);letter-spacing:-.055em;line-height:.95;margin:.55rem 0 1rem;max-width:980px}.lede{font-size:1.15rem;max-width:850px;color:var(--text-secondary);line-height:1.65}.hero-badge{min-width:220px;padding:1.2rem;border:1px solid var(--border);border-radius:18px;background:var(--bg-secondary);box-shadow:0 14px 40px rgba(20,32,51,.08)}.hero-badge span,.hero-badge small{display:block;color:var(--text-secondary)}.hero-badge strong{display:block;margin:.35rem 0}.summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:1.5rem 0}.summary-card,.card{background:var(--bg-secondary);border:1px solid var(--border);border-radius:20px;box-shadow:0 10px 35px rgba(20,32,51,.06)}.summary-card{padding:1rem 1.1rem}.summary-card small{display:block;color:var(--text-secondary);margin-bottom:.45rem}.workspace{display:grid;grid-template-columns:minmax(0,2.1fr) minmax(310px,.9fr);gap:18px;align-items:start}.main-column,.side-column{display:grid;gap:18px}.controls{padding:1rem}.control-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.controls label{font-size:.85rem;font-weight:700}.controls select,.controls input,.controls button,.methods-panel button{width:100%;margin-top:.4rem;border:1px solid var(--border);border-radius:11px;background:var(--bg-primary);color:var(--text-primary);padding:.72rem .8rem;font:inherit}.actions{display:flex;gap:8px;margin-top:12px}.actions button{width:auto}.actions .primary{background:var(--accent);border-color:var(--accent);color:white}.map-card{overflow:hidden}.map-heading,.section-heading{display:flex;justify-content:space-between;gap:1rem;align-items:start;padding:1.2rem 1.3rem}.map-heading h2,.section-heading h2,.detail-card h2,.synthesis-card h2{margin:.25rem 0 0;font-size:1.5rem}.confidence-key{display:flex;gap:10px;flex-wrap:wrap;font-size:.78rem;color:var(--text-secondary)}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:4px}.dot.strong{background:#18794e}.dot.moderate{background:#b7791f}.dot.developing{background:#c65d21}.dot.limited{background:#b42318}#evidenceGraph{width:100%;height:auto;min-height:620px;background:radial-gradient(circle at 50% 30%,var(--bg-secondary),var(--bg-primary));border-top:1px solid var(--border);border-bottom:1px solid var(--border)}.evidence-node circle{stroke:var(--bg-secondary);stroke-width:3;cursor:pointer}.evidence-node text{fill:var(--text-primary);font-size:12px;font-weight:650;pointer-events:none}.evidence-link{cursor:pointer;opacity:.78}.evidence-link:hover{opacity:1;stroke-width:7}.dimmed{opacity:.09!important}.hidden-link{display:none}.map-note{padding:.8rem 1.2rem;color:var(--text-secondary);font-size:.8rem}.detail-card,.synthesis-card{padding:1.25rem;position:sticky;top:92px}.synthesis-card{position:static}.evidence-chip{display:inline-block;border-radius:999px;padding:.4rem .65rem;font-size:.75rem;font-weight:800}.evidence-chip.strong{background:#e7f6ed;color:#12633f}.evidence-chip.moderate{background:#fff5d8;color:#8a5a00}.evidence-chip.developing{background:#fff0e8;color:#a54714}.evidence-chip.limited{background:#fdebea;color:#9d241e}.evidence-chip.neutral{background:var(--accent-soft);color:var(--accent)}.detail-card>p,.synthesis-card>p{color:var(--text-secondary);line-height:1.55}.gap-box{margin:1rem 0;padding:.9rem;border-left:4px solid #b42318;background:var(--bg-primary);border-radius:8px}.gap-box p{margin:.35rem 0 0;color:var(--text-secondary)}.source-block{margin-top:1.2rem}.source-block h3{font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-secondary)}.source-item{padding:.8rem 0;border-top:1px solid var(--border)}.source-item a{color:var(--accent);text-decoration:none}.source-item p{font-size:.88rem;color:var(--text-secondary);line-height:1.5;margin:.45rem 0}.source-meta{font-size:.75rem;color:var(--text-secondary);margin-top:.25rem}.source-item details{font-size:.8rem;color:var(--text-secondary)}.future-section,.methods-panel{margin-top:18px;padding-bottom:1rem}.section-heading>p{max-width:520px;color:var(--text-secondary);font-size:.9rem}.table-wrap{overflow-x:auto;padding:0 1.2rem 1rem}table{width:100%;border-collapse:collapse}th,td{text-align:left;vertical-align:top;padding:.85rem;border-top:1px solid var(--border);line-height:1.45}th{font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--text-secondary)}td{font-size:.9rem}.method-content{padding:0 1.3rem 1rem;line-height:1.6;color:var(--text-secondary)}.methods-panel .section-heading button{width:auto;margin:0}
-    @media(max-width:1050px){.workspace{grid-template-columns:1fr}.detail-card{position:static}.evidence-hero{grid-template-columns:1fr}.summary-grid{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:680px){.summary-grid,.control-grid{grid-template-columns:1fr}.actions{flex-direction:column}.actions button{width:100%}.evidence-hero h1{font-size:3rem}.map-heading,.section-heading{flex-direction:column}#evidenceGraph{min-height:520px}.evidence-node text{font-size:10px}}
+    .evidence-shell{max-width:1320px;margin:0 auto;padding:2rem clamp(1rem,3vw,2.5rem) 4rem}.evidence-hero{display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:end;padding:2rem 0 1rem}.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:.72rem;font-weight:800;color:var(--accent)}.evidence-hero h1{font-size:clamp(2.5rem,6vw,5rem);letter-spacing:-.055em;line-height:.98;margin:.55rem 0 1rem;max-width:920px}.lede{font-size:1.15rem;max-width:800px;color:var(--text-secondary);line-height:1.65}.hero-badge{min-width:220px;padding:1.2rem;border:1px solid var(--border);border-radius:18px;background:var(--bg-secondary)}.hero-badge span,.hero-badge small{display:block;color:var(--text-secondary)}.hero-badge strong{display:block;margin:.35rem 0}.card{background:var(--bg-secondary);border:1px solid var(--border);border-radius:20px;box-shadow:0 10px 35px rgba(20,32,51,.06)}.conclusion{padding:clamp(1.25rem,3vw,2rem);border-top:5px solid var(--accent)}.conclusion h2{font-size:clamp(1.8rem,4vw,3.2rem);letter-spacing:-.035em;margin:.35rem 0}.conclusion>p{max-width:950px;color:var(--text-secondary);font-size:1.04rem;line-height:1.65}.decision-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:1.5rem;background:var(--border);border:1px solid var(--border);border-radius:14px;overflow:hidden}.decision-grid div{display:grid;gap:.35rem;padding:1rem;background:var(--bg-primary)}.decision-grid small{color:var(--text-secondary);text-transform:uppercase;letter-spacing:.06em;font-weight:750}.map-layout{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(320px,.8fr);gap:18px;align-items:start;margin-top:18px}.map-column{display:grid;gap:18px}.controls{padding:0}.controls>summary,.disclosure>summary{cursor:pointer;list-style:none;padding:1.1rem 1.25rem;font-weight:800;display:flex;justify-content:space-between;align-items:center}.controls>summary::-webkit-details-marker,.disclosure>summary::-webkit-details-marker{display:none}.controls>summary::after,.disclosure>summary::after{content:'+';font-size:1.5rem;color:var(--accent)}.controls[open]>summary::after,.disclosure[open]>summary::after{content:'−'}.controls>summary span{font-size:.75rem;color:var(--text-secondary);font-weight:600;margin-left:auto;margin-right:1rem}.control-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:0 1.1rem}.controls label{font-size:.85rem;font-weight:700}.controls select,.controls input,.actions button{width:100%;margin-top:.4rem;border:1px solid var(--border);border-radius:11px;background:var(--bg-primary);color:var(--text-primary);padding:.72rem .8rem;font:inherit}.actions{display:flex;gap:8px;padding:12px 1.1rem 0}.actions button{width:auto;margin:0}.actions button[aria-pressed="true"]{background:var(--accent);color:#fff;border-color:var(--accent)}.filter-status{padding:0 1.1rem 1rem;margin:.7rem 0 0;color:var(--text-secondary);font-size:.85rem}.section-heading{display:flex;justify-content:space-between;gap:1.5rem;padding:1.2rem}.section-heading h2,.detail-card h2{margin:.25rem 0;font-size:1.6rem}.section-heading p{color:var(--text-secondary);max-width:620px;margin:0}.confidence-key{display:flex;gap:10px;flex-wrap:wrap;font-size:.78rem;color:var(--text-secondary);min-width:210px}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:4px}.dot.strong{background:#16845b}.dot.moderate{background:#b7791f}.dot.developing{background:#c65d21}.dot.limited{background:#c33226}.pathway-group{padding:1.2rem;border-top:1px solid var(--border)}.pathway-group>header{display:grid;grid-template-columns:1fr 1.2fr;gap:1rem;margin-bottom:1rem}.pathway-group h3{margin:0;font-size:1.08rem}.pathway-group header p{color:var(--text-secondary);font-size:.88rem;margin:0}.pathway-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem}.pathway{position:relative;text-align:left;padding:1rem;border:2px solid var(--border);border-left:7px solid var(--rating);border-radius:13px;background:var(--bg-primary);color:var(--text-primary)}.pathway.strong{--rating:#16845b}.pathway.moderate{--rating:#b7791f}.pathway.developing{--rating:#c65d21}.pathway.limited{--rating:#c33226}.pathway:hover,.pathway:focus-visible{border-color:var(--rating);outline:3px solid color-mix(in srgb,var(--rating) 25%,transparent)}.pathway.selected{border-color:var(--rating);box-shadow:0 0 0 4px color-mix(in srgb,var(--rating) 30%,transparent)}.route{display:flex;align-items:center;gap:.55rem;flex-wrap:wrap}.route>span{color:var(--rating);font-size:1.25rem}.claim{display:block;margin:.5rem 0;color:var(--text-secondary);font-size:.88rem}.rating{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--rating)}.detail-card{position:sticky;top:92px;padding:1.25rem;scroll-margin-top:85px}.detail-card:focus{outline:none}.detail-card>p{color:var(--text-secondary);line-height:1.6}.evidence-chip{display:inline-block;border-radius:999px;padding:.4rem .65rem;font-size:.75rem;font-weight:800}.evidence-chip.strong{background:#d9f5e8;color:#0b6040}.evidence-chip.moderate{background:#fff0bf;color:#704800}.evidence-chip.developing{background:#ffe2d2;color:#85370e}.evidence-chip.limited{background:#ffdcd8;color:#861d17}.evidence-chip.neutral{background:var(--accent-soft);color:var(--accent)}.gap-box{margin:1rem 0;padding:.9rem;border-left:4px solid #c33226;background:var(--bg-primary);border-radius:8px}.gap-box p{margin:.35rem 0 0;color:var(--text-secondary)}.source-block{margin-top:1.2rem}.source-block h3{font-size:.82rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-secondary)}.source-item{padding:.9rem 0;border-top:1px solid var(--border)}.source-item a{color:var(--accent);text-decoration:none}.source-item p{font-size:.88rem;color:var(--text-secondary);line-height:1.5;margin:.45rem 0}.source-meta{font-size:.75rem;color:var(--text-secondary);margin-top:.25rem}.source-item details{font-size:.82rem;color:var(--text-secondary)}.disclosure{margin-top:18px}.disclosure-body{padding:0 1.25rem 1.25rem;color:var(--text-secondary);line-height:1.6}.challenge-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}.challenge-grid article{padding:1rem;background:var(--bg-primary);border:1px solid var(--border);border-radius:12px}.challenge-grid h3{color:var(--text-primary);margin:0}.challenge-grid p{font-size:.9rem}.disclosure li{margin-bottom:.5rem}
+    @media(max-width:1050px){.evidence-hero,.map-layout{grid-template-columns:1fr}.detail-column{grid-row:1}.detail-card{position:static}.decision-grid{grid-template-columns:1fr}.pathway-map{grid-row:3}.controls{grid-row:2}}
+    @media(max-width:700px){.evidence-shell{padding-top:1rem}.evidence-hero h1{font-size:clamp(2.35rem,12vw,3.3rem)}.hero-badge{display:none}.control-grid,.pathway-list,.challenge-grid{grid-template-columns:1fr}.actions{flex-direction:column}.actions button{width:100%}.section-heading,.pathway-group>header{grid-template-columns:1fr;display:grid}.confidence-key{min-width:0}.pathway-group{padding:1rem}.decision-grid strong{font-size:.95rem}}
   </style>
 </BaseLayout>
