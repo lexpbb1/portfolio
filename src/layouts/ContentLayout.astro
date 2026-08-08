@@ -147,4 +147,34 @@ const { title, description, date, author } = Astro.props;
   .article-content :global(a:hover) {
     text-decoration: underline;
   }
+
+  @media (max-width: 600px) {
+    .content-article {
+      padding: 1.5rem 1rem;
+    }
+
+    .article-header h1 {
+      font-size: clamp(1.85rem, 9vw, 2.5rem);
+      overflow-wrap: anywhere;
+    }
+
+    .description {
+      font-size: 1rem;
+    }
+
+    .article-meta {
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .article-content {
+      line-height: 1.7;
+    }
+
+    .article-content :global(blockquote) {
+      margin-left: 0;
+      margin-right: 0;
+      padding-left: 0.85rem;
+    }
+  }
 </style>
