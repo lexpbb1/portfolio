@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/ContentLayout.astro
 title: "When targeting need is not enough"
-description: "Can place-based funding be well targeted—and still misallocated? A rapid evidence assessment across youth, civil society and the wider DCMS sectors."
+description: "Can place-based funding be well targeted—and still misallocated? A rapid evidence assessment across youth, civil society and the wider cultural, civic and digital sectors."
 date: 2026-08-08
 author: Philip Ball
 ---
@@ -102,20 +102,22 @@ A practical decision process would contain six stages:
 5. **Matched intervention:** provide capacity or developmental funding where need is high but readiness is low, rather than prematurely funding full delivery.
 6. **Adaptive progression:** scale, taper, redesign or stop according to pre-agreed lead indicators and later outcomes.
 
-## Why this matters for progression and off-ramps
+## From salami-slicing to active public value management
 
-The same distinction matters at the end of an investment as at its beginning.
+The same distinction matters when budgets tighten or an investment reaches a decision point. A common response to financial pressure is to reduce every programme by a similar percentage. This can feel equitable, but **salami-slicing treats unlike investments as though they offer the same marginal value**. It can protect activity that is no longer adding much while weakening preventive work just before benefits emerge.
 
-If continuation depends only on whether a place still has poor outcomes, funding may become permanent: lagging outcomes can remain poor long after an intervention has exhausted its marginal contribution. Conversely, withdrawing funding because the headline outcome has not yet moved can terminate a credible preventive programme before its benefits emerge.
+Better targeting can support a more deliberate alternative. Instead of asking only where outcomes are worst, decision-makers can consider the strength of the mechanism, evidence of additional impact, local capacity, future risk and the likely value of the next pound. This changes prioritisation from a uniform budget exercise into active portfolio management.
 
-Progression decisions should therefore ask four separate questions:
+If continuation depends only on whether a place still has poor outcomes, funding may become open-ended: lagging outcomes can remain poor after a particular intervention has exhausted its marginal contribution. Conversely, reducing support because the headline outcome has not yet moved can terminate a credible preventive programme before its benefits emerge.
+
+Prioritisation and transition decisions should therefore ask four separate questions:
 
 - Is need still high?
 - Is the funded mechanism working?
 - Is local capacity becoming more sustainable?
 - Does the next pound offer more value here than a different intervention, stage or place?
 
-That creates a more useful range of decisions than a binary “continue or stop”: sustain, scale, transition, taper, replace the intervention, or move temporarily back to capacity building.
+That creates a more useful range of options than either uniform cuts or a binary “continue or stop”: protect, scale, redesign, taper carefully, replace the intervention, or shift temporarily towards capacity building. A managed transition should protect viable local capability, recognise sunk relationship costs and monitor for deterioration rather than assuming that withdrawal is consequence-free.
 
 ## Limits and next research steps
 
@@ -123,8 +125,8 @@ This was a rapid critical appraisal rather than a full systematic review. The ev
 
 The next empirical step would be to test whether observable lead indicators improve prediction of programme uptake, delivery and marginal effects after controlling for baseline need. Particular care would be needed to avoid penalising high-need places simply because historic underinvestment has weakened their measured capacity.
 
-The policy goal is not to retreat from equity. It is to manage public value actively: protect the entitlement of high-need places to support while matching the timing and form of that support to the pathway most likely to produce lasting change.
+The policy goal is not to retreat from equity. It is to manage public value actively: protect the entitlement of high-need places to support while matching the timing and form of that support to the pathway most likely to produce lasting change—and prioritising deliberately when resources cannot support everything equally.
 
 ---
 
-*This is independent analytical work and does not represent the views of the Department for Culture, Media and Sport or the UK Government.*
+*This independent analytical exploration was prepared in a personal capacity using publicly available evidence. It does not represent government policy, official advice, or the views of the Department for Culture, Media and Sport or the UK Government.*
