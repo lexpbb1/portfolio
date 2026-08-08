@@ -1,12 +1,29 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL;
 ---
 
-<BaseLayout title="Projects" description="My portfolio of projects">
+<BaseLayout title="Projects" description="Applied research, analytical tools and experiments in public value">
   <div class="section-page">
     <h1>Projects</h1>
-    <p class="intro">Showcase of my work and side projects. Add your projects to the `content/projects/` directory.</p>
-    <p class="no-content">No projects yet. Start by adding markdown files to the `content/projects/` directory.</p>
+    <p class="intro">Applied research, analytical tools and experiments focused on place, public value and better decision-making.</p>
+
+    <div class="project-grid">
+      <article class="project-card featured">
+        <div class="card-topline">
+          <span class="project-type">Rapid evidence assessment</span>
+          <span class="project-date">August 2026</span>
+        </div>
+        <h2><a href={`${base}projects/when-targeting-need-is-not-enough/`}>When targeting need is not enough</a></h2>
+        <p>Can place-based funding be well targeted—and still misallocated? Evidence from youth, civil society and the wider cultural, civic and digital sectors.</p>
+        <div class="tags" aria-label="Topics">
+          <span>Place-based policy</span>
+          <span>Public value</span>
+          <span>Prevention</span>
+        </div>
+        <a class="read-link" href={`${base}projects/when-targeting-need-is-not-enough/`}>Read the project <span aria-hidden="true">→</span></a>
+      </article>
+    </div>
   </div>
 </BaseLayout>
 
@@ -24,17 +41,85 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
   .intro {
     color: var(--text-secondary);
-    font-size: 1rem;
-    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    line-height: 1.65;
+    margin-bottom: 2.5rem;
   }
 
-  .no-content {
-    text-align: center;
-    color: var(--text-tertiary);
-    padding: 3rem 2rem;
+  .project-grid {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .project-card {
+    padding: 1.6rem;
     background: var(--bg-secondary);
-    border-radius: 8px;
-    border: 1px dashed var(--border);
+    border-radius: 18px;
+    border: 1px solid var(--border);
+    box-shadow: 0 12px 36px rgba(20, 32, 51, 0.07);
+  }
+
+  .project-card.featured {
+    border-top: 4px solid var(--accent);
+  }
+
+  .card-topline {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+  }
+
+  .project-type {
+    color: var(--accent);
+    font-weight: 750;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .project-card h2 {
+    font-size: 1.65rem;
+    letter-spacing: -0.025em;
+    margin: 0 0 0.75rem;
+  }
+
+  .project-card h2 a,
+  .read-link {
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+
+  .project-card h2 a:hover,
+  .read-link:hover {
+    color: var(--accent);
+  }
+
+  .project-card p {
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1.25rem 0;
+  }
+
+  .tags span {
+    padding: 0.35rem 0.65rem;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 0.78rem;
+    font-weight: 650;
+  }
+
+  .read-link {
+    display: inline-block;
+    font-weight: 750;
   }
 
   @media (max-width: 768px) {
