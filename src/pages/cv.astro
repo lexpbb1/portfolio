@@ -2,48 +2,21 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="CV" description="My professional background">
+<BaseLayout title="Experience — Phil Ball" description="Professional experience across government, public investment, consultancy and academia">
   <div class="section-page">
-    <h1>CV</h1>
-    <p class="intro">My professional background and experience. Add your CV content to the `content/cv/` directory.</p>
-    <p class="no-content">CV coming soon. Add markdown files to the `content/cv/` directory.</p>
+    <span class="eyebrow">Experience</span><h1>Policy, capital and practice</h1>
+    <p class="intro">More than 15 years working on public value, investment, place, resilience and institutional decision-making.</p>
+    <div class="timeline">
+      <article><small>Current</small><div><h2>UK Civil Service · Government Economic Service · DCMS</h2><p>Strategic economics spanning place, financial sustainability, analytical strategy and evidence-informed decision-making.</p></div></article>
+      <article><small>Public investment</small><div><h2>UK Infrastructure Bank · now National Wealth Fund</h2><p>Helped establish and scale the impact function, connecting infrastructure impact, resilience and public value with investment risk and return.</p></div></article>
+      <article><small>Consultancy</small><div><h2>Simetrica–Jacobs · EY</h2><p>Economic appraisal, impact assessment, value for money and strategy for public and private-sector clients.</p></div></article>
+      <article><small>Government</small><div><h2>HM Treasury · DWP · HMRC</h2><p>Economic analysis, regulation, public-sector reform and policy delivery across major government departments.</p></div></article>
+      <article><small>Academic</small><div><h2>University of Nottingham</h2><p>PhD in Economics and Visiting Fellow at Nottingham University Business School, connecting academic evidence with policy and practice.</p></div></article>
+    </div>
+    <p class="note">This is a selected professional overview rather than a full employment record. Views expressed on this site are personal.</p>
   </div>
 </BaseLayout>
 
 <style>
-  .section-page {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 3rem 2rem;
-  }
-
-  .section-page h1 {
-    margin-bottom: 1rem;
-    font-size: 2.5rem;
-  }
-
-  .intro {
-    color: var(--text-secondary);
-    font-size: 1rem;
-    margin-bottom: 2rem;
-  }
-
-  .no-content {
-    text-align: center;
-    color: var(--text-tertiary);
-    padding: 3rem 2rem;
-    background: var(--bg-secondary);
-    border-radius: 8px;
-    border: 1px dashed var(--border);
-  }
-
-  @media (max-width: 768px) {
-    .section-page {
-      padding: 2rem 1rem;
-    }
-
-    .section-page h1 {
-      font-size: 1.75rem;
-    }
-  }
+  .section-page{max-width:960px;margin:0 auto;padding:clamp(2.5rem,7vw,5rem) 1rem}.eyebrow,small{text-transform:uppercase;letter-spacing:.1em;color:var(--accent);font-size:.75rem;font-weight:800}.section-page>h1{font-size:clamp(2.7rem,7vw,5rem);letter-spacing:-.05em;margin:.5rem 0}.intro{font-size:1.15rem;line-height:1.7;color:var(--text-secondary);max-width:720px}.timeline{margin-top:3rem}.timeline article{display:grid;grid-template-columns:190px 1fr;gap:2rem;padding:1.5rem 0;border-top:1px solid var(--border)}.timeline h2{margin:0;font-size:1.4rem}.timeline p,.note{color:var(--text-secondary);line-height:1.65}.note{font-size:.88rem;margin-top:2rem}@media(max-width:640px){.timeline article{grid-template-columns:1fr;gap:.65rem}}
 </style>

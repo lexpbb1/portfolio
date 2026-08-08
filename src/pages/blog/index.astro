@@ -1,136 +1,23 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL;
 
-const blogPosts = [
-  {
-    title: 'Getting Started with Astro',
-    slug: 'getting-started-astro',
-    description: 'Learn how to build fast websites with Astro and Markdown',
-    date: '2026-07-28',
-    url: '/blog/getting-started-astro/',
-  },
+const authoredPosts = [
+  { title: "The UK’s productivity puzzle and its implications for government policy", date: '14 July 2017', description: 'A firm-level account of weak UK productivity and the implications for capital allocation, competition, innovation and public policy.', url: 'https://economicsforthemillion.wordpress.com/2017/07/14/the-uks-productivity-puzzle-and-its-implications-for-government-policy/' },
+  { title: 'Soft Brexit but a hard landing could create an economy that works for no-one', date: '7 February 2017', description: 'Why a smooth administrative exit could still expose deeper weaknesses in growth, productivity and living standards.', url: 'https://economicsforthemillion.wordpress.com/2017/02/07/soft-brexit-but-a-hard-landing-could-create-an-economy-that-works-for-no-one/' }
 ];
 ---
 
-<BaseLayout title="Blog" description="Articles and thoughts">
-  <div class="blog-page">
-    <h1>Blog</h1>
-    <p class="intro">Welcome to my blog. Here I share articles, thoughts, and insights on various topics.</p>
-
-    {blogPosts.length > 0 ? (
-      <div class="blog-list">
-        {blogPosts.map((post) => (
-          <article class="blog-item">
-            <h2>
-              <a href={post.url}>{post.title}</a>
-            </h2>
-            <p class="blog-date">{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
-            <p class="blog-excerpt">{post.description}</p>
-            <a href={post.url} class="read-more">Read more →</a>
-          </article>
-        ))}
-      </div>
-    ) : (
-      <p class="no-content">No blog posts yet. Check back soon!</p>
-    )}
+<BaseLayout title="Writing — Phil Ball" description="Original articles and current analytical writing by Phil Ball">
+  <div class="listing-page">
+    <span class="eyebrow">Writing</span><h1>Articles and essays</h1>
+    <p class="intro">Current analytical writing and selected original articles from my earlier <em>Economics for the Million</em> archive. Reblogs and curated links are intentionally excluded.</p>
+    <section><h2>Current work</h2><article class="item featured"><small>2026 · Rapid evidence assessment</small><h3><a href={`${base}projects/when-targeting-need-is-not-enough/`}>When targeting need is not enough</a></h3><p>How need, prevention, local capacity and marginal value can inform place-based allocation and responsible transition.</p></article></section>
+    <section><h2>Original archive</h2>{authoredPosts.map(post => <article class="item"><small>{post.date}</small><h3><a href={post.url} target="_blank" rel="noreferrer">{post.title} ↗</a></h3><p>{post.description}</p></article>)}</section>
+    <a class="archive" href="https://economicsforthemillion.wordpress.com/" target="_blank" rel="noreferrer">Visit the complete historical archive ↗</a>
   </div>
 </BaseLayout>
 
 <style>
-  .blog-page {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 3rem 2rem;
-  }
-
-  .blog-page h1 {
-    margin-bottom: 0.5rem;
-    font-size: 2.5rem;
-  }
-
-  .intro {
-    color: var(--text-secondary);
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
-  }
-
-  .blog-list {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  .blog-item {
-    padding: 2rem;
-    background: var(--bg-secondary);
-    border-radius: 8px;
-    border: 1px solid var(--border);
-    transition: box-shadow 0.2s, transform 0.2s;
-  }
-
-  .blog-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  }
-
-  .blog-item h2 {
-    margin-top: 0;
-    margin-bottom: 0.5rem;
-  }
-
-  .blog-item h2 a {
-    text-decoration: none;
-    color: inherit;
-    transition: color 0.2s;
-  }
-
-  .blog-item h2 a:hover {
-    color: var(--accent);
-  }
-
-  .blog-date {
-    color: var(--text-tertiary);
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .blog-excerpt {
-    color: var(--text-secondary);
-    margin-bottom: 1rem;
-  }
-
-  .read-more {
-    color: var(--accent);
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.2s;
-  }
-
-  .read-more:hover {
-    color: var(--accent-hover);
-  }
-
-  .no-content {
-    text-align: center;
-    color: var(--text-secondary);
-    padding: 2rem;
-  }
-
-  @media (max-width: 768px) {
-    .blog-page {
-      padding: 2rem 1rem;
-    }
-
-    .blog-page h1 {
-      font-size: 1.75rem;
-    }
-
-    .intro {
-      font-size: 1rem;
-    }
-
-    .blog-item {
-      padding: 1.5rem;
-    }
-  }
+  .listing-page{max-width:900px;margin:0 auto;padding:clamp(2.5rem,7vw,5rem) 1rem}.eyebrow,small{text-transform:uppercase;letter-spacing:.1em;color:var(--accent);font-size:.75rem;font-weight:800}.listing-page h1{font-size:clamp(2.7rem,7vw,5rem);letter-spacing:-.05em;margin:.5rem 0}.intro{font-size:1.15rem;line-height:1.7;color:var(--text-secondary);max-width:720px}.listing-page section{margin-top:3rem}.item{padding:1.4rem 0;border-top:1px solid var(--border)}.item.featured{padding:1.4rem;border:1px solid var(--border);border-radius:18px;background:var(--bg-secondary)}.item h3{margin:.35rem 0;font-size:1.45rem}.item h3 a{text-decoration:none}.item h3 a:hover{color:var(--accent)}.item p{color:var(--text-secondary);line-height:1.65}.archive{display:inline-block;margin-top:2rem;color:var(--accent);font-weight:750;text-decoration:none}
 </style>

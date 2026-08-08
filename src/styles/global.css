@@ -119,8 +119,31 @@ main {
 .footer-container {
   max-width: 1200px;
   margin: 0 auto;
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
   color: var(--text-secondary);
+}
+
+.footer-container p {
+  margin: 0.25rem 0 0;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-links a {
+  color: var(--text-primary);
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
 }
 
 /* Typography */
@@ -233,5 +256,10 @@ p {
 
   h2 {
     font-size: 1.1rem;
+  }
+
+  .footer-container {
+    align-items: flex-start;
+    flex-direction: column;
   }
 }
